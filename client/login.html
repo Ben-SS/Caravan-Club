@@ -1,0 +1,21 @@
+<template name="login">
+    <form>
+		{{#if userlogged}}
+	  	<div class="form-button">
+			<button id="logout" type="submit" class="btn btn-primary form-button">Logout</button>
+		</div>
+		{{else}}
+		<div class="form-group">
+			<label class="form-label" for="email">Username:</label>
+			<input type="text" class="form-control" id="username" name="loginUsername" required>
+		</div>
+		<div class="form-group">
+			<label class="form-label" for="pwd">Password:</label>
+			<input type="password" class="form-control" id="pwd" name="loginPassword" required>
+		</div>
+		<div class="form-button">
+			<button id="login" type="submit" class="btn btn-primary form-button">Login</button>
+		</div>
+		{{/if}}
+	</form>
+</template>
