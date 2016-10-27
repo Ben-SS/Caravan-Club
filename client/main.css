@@ -40,6 +40,7 @@ h1{
 }
 
 h2{
+	font-family: "Magnolia";
 	font-size: 14pt;
 	margin:0;
 }
@@ -529,6 +530,10 @@ p{
 	text-align: center;
 }
 
+#name-div > h2:nth-child(3){
+	margin-bottom:60px;
+}
+
 .name{
 	display: inline-block;
 	color:#ff8400;
@@ -542,7 +547,7 @@ p{
 #pers-details{
 	float:left;
 	padding: 5px;
-	margin:68px 0 0 20px;
+	margin:0 0 0 20px;
 	border: 2px dashed orange;
 	border-radius: 10px;
 	width:15%;
@@ -555,6 +560,14 @@ p{
 
 #password-text{
 	margin-bottom:20px;
+}
+
+#password-wrong{
+	padding:10px;
+}
+
+#password-tryagain{
+	margin:5px;
 }
 
 .private-header{
@@ -580,7 +593,7 @@ p{
 	float:left;
 	margin:10px 0 20px 20px;
 	width:15%;
-	height:255px;
+	height:200px;
 	border-radius: 10px;
 	border: 2px dashed orange;
 }
@@ -589,20 +602,162 @@ p{
 	margin: 30px 0 40px 0;
 }
 
+#temp-users-div{
+	float:left;
+	margin:10px 0 20px 20px;
+	width:16%;
+	min-height:200px;
+	border-radius: 10px;
+	border: 2px dashed orange;
+}
+
+#temp-users-div > h4{
+	margin: 20px 0 20px 0;
+}
+
+.temp-user-details-div{
+	background: rgba(255,255,255,0.8);
+	border-radius: 10px;
+	margin:0 5px 10px 5px;
+}
+
+.temp-user-details-div .private-text{
+	color:#333333;
+	font-size: 9pt;
+}
+
+.temp-decision-div{
+	text-align: center;
+	padding:5px;
+}
+
+.each-temp-user-div{
+	padding:10px;
+}
+
+.each-temp-user-div .private-text{
+	text-align: left;
+	padding:5px;
+}
+
+#users-div{
+	float:left;
+	margin:10px 0 20px 20px;
+	width:30%;
+	min-height:322px;
+	border-radius: 10px;
+	border: 2px dashed orange;
+}
+
+#users-div > h4{
+	margin: 20px 0 20px 0;
+}
+
+.user-details-div{
+	background: rgba(255,255,255,0.8);
+	border-radius: 10px;
+	margin:0 5px 10px 5px;
+	width:47%;
+	display: inline-table;
+}
+
+.user-details-div .private-text{
+	color:#333333;
+	font-size: 9pt;
+}
+
+.user-remove-div{
+	text-align: center;
+	padding:5px;
+}
+
+.each-user-div{
+	padding:10px;
+}
+
+.each-user-div .private-text{
+	text-align: left;
+	padding:5px;
+}
+
+#admin-messages-div{
+	float:left;
+	margin:10px 0 20px 20px;
+	width:15%;
+	min-height:322px;
+	border-radius: 10px;
+	border: 2px dashed orange;
+}
+
+#admin-messages-div > h4, #user-messages-div > h4{
+	margin: 20px 0 20px 0;
+}
+
+#admin-messages-div > div > div > p, #user-messages-div > div > div > p{
+	text-align: center;
+}
+
+#user-messages-div{
+	float:right;
+	margin:10px 0 20px 10px;
+	width:33%;
+	min-height:257px;
+	border-radius: 10px;
+	border: 2px dashed orange;
+}
+
+.from-div{
+	padding:10px;
+	margin:10px;
+	text-align: center;
+	background: rgba(255,255,255,0.8);
+	border-radius: 10px;
+}
+
+.from-div .private-text{
+	text-align: left;
+	padding:5px;
+	color:#333333;
+}
+
+.unread{
+	background:#fed5a8;
+}
+
+.message-content-div{
+	margin:5px;
+	padding:20px 10px 20px 10px;
+	background:#f9f9f9;
+	border-radius: 10px;
+	border:1px solid rgba(21,21,21,0.25);
+}
+
+.show-content-btn{
+	margin:20px 0 10px 0;
+}
+
+.delete-message-div{
+	text-align: right;
+}
+
+.delete-message-btn{
+	margin:10px 0 0 0;
+}
+
 #checkbox-newsletter{
 	text-align: center;
 }
 
 #newsletter-check{
-	margin:45px 0 10px 0;
+	margin:25px 0 10px 0;
 }
 
 #message-div{
 	float:right;
-	width:62%;
+	width:31%;
 	background: white;
 	border-radius: 10px;
-	margin:10px 10px 20px 10px;
+	margin:10px 10px 10px 10px;
 	padding:10px;
 }
 
@@ -610,11 +765,33 @@ p{
 	color:#ff8400;
 }
 
-#message-modal{
+#message-modal, #admin-message-modal{
 	top:100px;
 }
 
-#message-modal > div > div > div:nth-child(1){
+#message-modal > div > div > div:nth-child(1), #admin-message-modal > div > div > div:nth-child(1),
+#admin-message-modal > div > div > div.modal-body > p{
+	text-align: center;
+}
+
+#admin-messaging-div{
+	float:right;
+	width:15%;
+	background: white;
+	border-radius: 10px;
+	margin:10px 10px 0 0;
+	padding:10px;
+}
+
+#admin-messaging-div > h4{
+	color:#ff8400;
+}
+
+#admin-messaging-modal{
+	top:100px;
+}
+
+#admin-messaging-modal > div > div > div:nth-child(1){
 	text-align: center;
 }
 
@@ -622,8 +799,8 @@ p{
 	float:right;
 	text-align: center;
 	margin:10px 50px 20px 10px;
-	width:15%;
-	height:255px;
+	width:13%;
+	height:200px;
 	border-radius: 10px;
 	border: 2px dashed orange;
 }
@@ -641,7 +818,7 @@ p{
 	display: inline-table;
 	width:77%;
 	float: right;
-	margin:40px 50px 0 0;
+	margin:0 50px 0 0;
 }
 
 #calendar > table{
@@ -678,6 +855,15 @@ p{
 	border-radius: 0 0 10px 0;
 }
 
+#calendar-control{
+	text-align: right;
+	margin:0 50px 0 0;
+}
+
+#add-event-modal, #remove-event-modal{
+	padding-top:10vh;
+	text-align: left;
+}
 
 /**** Blog ****/
 
@@ -831,6 +1017,14 @@ p{
 	width:95%;
 	margin:40px 0 0 15px;
 	}
+
+	#message-div{
+		width:30%;
+	}
+
+	#user-messages-div{
+		width:30%;
+	}
 }
 
 @media screen and (max-width: 1237px) {
@@ -842,20 +1036,57 @@ p{
 		display: none;
 	}
 
-	#message-div{
-		width:91%;
-		margin-right: 55px;
-	}
-
 	#pers-details{
 		float: none;
-		margin:68px auto 0 auto;
+		margin:0 auto 0 auto;
 	}
 
 	#calendar{
 		float:none;
 		width:75%;
+		margin:10px auto 0 auto;
+	}
+
+	#calendar-control{
+		float:none;
+		width:75%;
 		margin:40px auto 0 auto;
+	}
+
+	#users-div{
+		width:170px;
+	}
+
+	.user-details-div{
+		width:95%;
+	}
+
+	#admin-messages-div{
+		width:290px;
+	}
+
+	#temp-users-div{
+		width:200px;
+	}
+
+	#admin-messaging-div{
+		margin:10px 0 0 20px;
+		float:left;
+		width:290px;
+	}
+
+	#blog-link-div{
+		width:170px;
+	}
+}
+
+@media screen and (max-width: 1092px) {
+	#message-div{
+		width:25%;
+	}
+
+	#user-messages-div{
+		width:25%;
 	}
 }
 
@@ -868,17 +1099,8 @@ p{
 		width: 160px;
 	}
 
-	#message-div{
-		width:91%;
-		margin-right: 55px;
-	}
-
-	#blog-link-div{
-		width:45%;
-	}
-
 	#newsletter-div{
-		width:45%;
+		width:170px;
 	}
 
 	#pers-details{
@@ -899,13 +1121,39 @@ p{
 		display: none;
 	}
 
-	#message-div{
-		width:80%;
-		margin-right: 85px;
-	}
-
 	#pers-details{
 		width:35%;
+	}
+
+	#admin-messages-div{
+		width:200px;
+	}
+
+	#message-div{
+		width:170px;
+	}
+
+	#user-messages-div{
+		width:170px;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	#home{
+		padding-left:0;	
+	}
+
+	.dropdown{
+		padding-right:0;	
+	}
+
+	#user-messages-div{
+		min-height:200px;
+	}
+
+	#message-div{
+		float:left;
+		margin:0 0 0 20px;
 	}
 }
 
@@ -989,6 +1237,14 @@ p{
 		right:10px;
 		bottom:50px;
 	}
+
+	#blog-link-div{
+		margin:10px 50px 0 20px;
+	}
+
+	#user-messages-div{
+		margin-right:50px;
+	}
 }
 
 @media screen and (max-width: 530px) {
@@ -1007,10 +1263,6 @@ p{
 
 	.glyphicon-envelope{
 		font-size: 14pt;
-	}
-
-	#message-div{
-		margin-right: 60px;
 	}
 }
 
@@ -1033,6 +1285,21 @@ p{
 
 	#legend{
 		top:25%;
+	}
+
+	#blog-link-div{
+		float:left;
+		margin-left:20px;
+	}
+
+	#user-messages-div{
+		float:left;
+		margin-left:20px;
+	}
+
+	#message-div{
+		float:left;
+		margin-left:20px;
 	}
 }
 

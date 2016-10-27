@@ -20,7 +20,7 @@ Template.login.events({
         if(! Meteor.userId()){
 
             Meteor.loginWithPassword(usernameVar, passwordVar, function(){
-                    if(Meteor.userId()){
+                    if(Meteor.userId()){                        
                         return;
                     }
                     else if (! Meteor.userId()){
@@ -32,11 +32,11 @@ Template.login.events({
 
     'click #logout': function(event) {
         event.preventDefault();
-
+        $('.dropdown-menu').toggle();                
         Meteor.logout(function(){
-            Router.go('/');
-        });
-        
+            window.location.reload();
+            Router.go('/');                                
+        })  
     }
 
 });

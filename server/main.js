@@ -1,15 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 
 Meteor.publish('users', function () {
-    var admin = Meteor.users.findOne({username:"admin"});
+    var admin = Meteor.users.findOne({'profile.name':"Admin"});
     var adminId = admin._id;
     var currentUserId = this.userId;
 
     if (adminId == currentUserId){
-        return Meteor.users.find();
+        return Meteor.users.find({});
     }
-    else if (this.userId){
-        return Meteor.users.find({_id:this.userId});
+    else if (currentUserId){
+        return Meteor.users.find({_id:currentUserId});
             //,
             //{fields: {'username': 1, '_id': 1, 'profile': 1}};
     }
@@ -28,12 +28,12 @@ Meteor.users.allow({
 });
 
 Meteor.publish('tempusers', function () {
-    var admin = Meteor.users.findOne({username:"admin"});
+    var admin = Meteor.users.findOne({'profile.name':"Admin"});
     var adminId = admin._id;
     var currentUserId = this.userId;
 
     if (adminId == currentUserId){
-        return tempusers.find();
+        return tempusers.find({});
     }
     else{
         return false;
@@ -180,19 +180,19 @@ Meteor.startup(() => {
                             title  : 'Family BBQ',
                             description  : 'Family bbq in el refugio, starting at 14:30',
                             date  : new Date("2016-10-29"),
-                            people    : ["Juan","Manuel"]
+                            people    : []
                         },
                         {
                             title  : 'Beach day',
                             description  : 'Trip down to La Zamora for a fun filled day by the sea',
                             date  : new Date("2016-10-25"),
-                            people    : ["Juan"]
+                            people    : []
                         },
                         {
                             title  : 'Trip to Tenerife',
                             description  : 'Stay overnight at El Médano',
                             date  : new Date("2016-10-28"),
-                            people    : ["Juan"]
+                            people    : []
                         }
                     ]
 
@@ -207,9 +207,10 @@ Meteor.startup(() => {
         
         messages.insert(
             {   
+                to: "Admin",
                 from : "",
                 title: "Welcome",
-                content : "Welcome administrator",
+                content : "Welcome administrator, take a look at your dashboard, from here you can control the site.",
                 date : new Date(),
                 unread : true
             }

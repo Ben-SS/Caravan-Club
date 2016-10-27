@@ -1,12 +1,12 @@
 Template.nav.helpers({
 
     loggedIn:function(){
-            var logged = Meteor.users.findOne();
+            var logged = Meteor.userId();
             if(logged){
                 return true;
             }
             else{
-                return false;
+                return;
             }
         },
         

@@ -5,7 +5,6 @@
             <div class="title-row">
                 <h1>Dashboard</h1>
             </div>
-
             <div id="name-div">
                 <h2 class="name">{{profile.name}}</h2><br>
                 <h2 class="name">{{profile.surname}}</h2>
@@ -116,12 +115,92 @@
                         </div>
                     </div>
                 </div>
+                
+
+                {{#if admin}}
+                <div id="calendar-control">
+                    <button id="add-event" class="btn btn-warning">Add event</button>
+                    <button id="remove-event" class="btn btn-danger">Remove events</button>
+
+                    <div id="add-event-modal" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-sm">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Add event</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="add-event-form">
+                                        <div class="form-group">
+                                            <label class="form-label" for="title">Event title:</label>
+                                            <input type="text" class="form-control" id="title" name="eventTitle" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="description">Event description:</label>
+                                            <input type="text" class="form-control" id="description" name="eventDescription" placeholder="Time, where..." required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="date">Date:</label>
+                                            <input type="date" class="form-control" id="date" name="eventDate" required>
+                                        </div>                                        
+                                        <div class="form-button">
+                                            <button type="submit" class="btn btn-success">Add</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="remove-event-modal" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-sm">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Remove events</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <table id="event-remove-table" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Event</th>
+                                                <th>Remove</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each events}}
+                                            <tr>
+                                                <td>{{title}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger btn-sm remove-event-btn">Remove</button>
+                                                </td>                                          
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
 
                 {{> calendar}}
 
             </div>
 
             <div class="row">
+            {{#if user}}
                 <div id="newsletter-div">
                     <h4 class="private-header">Newsletter</h4>
                     <div id="checkbox-newsletter">
@@ -129,15 +208,152 @@
                         <input id="newsletter-check" type="checkbox" value="yes/no" {{checked}}>
                     </div>
                 </div>
+            {{/if}}
+
+            {{#if admin}}
+
+                <div id="users-div">
+                    <h4 class="private-header">Existing Users</h4>
+                    {{#each existingUsers}}
+                    <div class="user-details-div">
+                        <div class="each-user-div">
+                            <p class="private-text"><strong>username: </strong>{{username}}</p>
+                            <p class="private-text"><strong>email: </strong>{{email}}</p>
+                            <p class="private-text"><strong>name: </strong>{{profile.name}}</p>
+                            <p class="private-text"><strong>surname: </strong>{{profile.surname}}</p>
+                        </div>
+                        <div class="user-remove-div">
+                            <button class="btn btn-sm btn-danger delete-user-btn">Delete Account</button>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                
+                <div id="temp-users-div">
+                    <h4 class="private-header">New user confirmation</h4>
+                    {{#each tempuser}}
+                    <div class="temp-user-details-div">
+                        <div class="each-temp-user-div">
+                            <p class="private-text"><strong>username: </strong>{{this.username}}</p>
+                            <p class="private-text"><strong>email: </strong>{{this.email}}</p>
+                            <p class="private-text"><strong>name: </strong>{{this.profile.name}}</p>
+                            <p class="private-text"><strong>surname: </strong>{{this.profile.surname}}</p>
+                        </div>
+                        <div class="temp-decision-div">
+                            <button class="btn btn-sm btn-success user-yes-btn">Accept</button>
+                            <button class="btn btn-sm btn-danger user-no-btn">Decline</button>
+                        </div>
+                    </div>
+                    {{/each}}
+                    <div id="no-temp-users" {{noTempUsers}}>
+                        <p class="private-text">No new user requests</p>
+                    </div>
+                </div>
+
+                <div id="admin-messages-div">
+                    <h4 class="private-header">Messages</h4>
+                    {{#each message}}
+                    <div class="from-div {{unread}}">
+                        <p class="private-text"><strong>From: </strong>{{from}}</p>
+                        <p class="private-text"><strong>Subject: </strong>{{title}}</p>
+                        <p class="private-text"><strong>Date: </strong>{{format date}}</p>
+                        <button class="btn btn-sm btn-warning show-content-btn">Show/Hide Message</button>
+                        <div hidden class="message-content-div-{{_id}} message-content-div">
+                            <p class="private-text message-content">{{content}}</p>
+                        </div>
+                        <div class="delete-message-div">
+                            <button class="btn btn-sm btn-danger delete-message-btn">Delete</button>
+                        </div>
+                    </div>
+                    {{/each}}
+                    <div class="no-messages" {{noMessages}}>
+                        <p class="private-text">No new messages</p>
+                    </div>
+                </div>
+                
+            {{/if}}
+
 
                 <div id="blog-link-div">
                     <h4 class="private-header">Go To Blog Admin</h4>
                     <button id="go-blog-btn" class="btn btn-lg btn-info">Blog Admin</button>
                 </div>
 
+
+            {{#if admin}}
+
+                <div id="admin-messaging-div">
+                    <h4 class="private-header">Message users</h4>
+                    <form id="admin-message-form">
+                        <div class="form-group">
+                            <label class="form-label" for="to">To:</label>
+                            <select id="users-list" class="form-control" name="users-list">
+                                {{#each existingUsers}}
+                                <option name="userName" value="{{profile.name}}">{{profile.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject:</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message">Type your message here:</label>
+                            <textarea class="form-control" id="message" name="message" required></textarea>
+                        </div>
+                        <div class="form-button">
+                            <button type="submit" class="btn btn-success">Send</button>
+                        </div>
+                    </form>
+
+                    <div id="admin-message-modal" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-sm">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Message sent!</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Message sent to user</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            {{/if}}
+
+
+            {{#if user}}
+                <div id="user-messages-div">
+                    <h4 class="private-header">Messages from administrator</h4>
+                    {{#each message}}
+                    <div class="from-div {{unread}}">
+                        <p class="private-text"><strong>Subject: </strong>{{title}}</p>
+                        <p class="private-text"><strong>Date: </strong>{{format date}}</p>
+                        <button class="btn btn-sm btn-warning show-content-btn">Show/Hide Message</button>
+                        <div hidden class="message-content-div-{{_id}} message-content-div">
+                            <p class="private-text message-content">{{content}}</p>
+                        </div>
+                        <div class="delete-message-div">
+                            <button class="btn btn-sm btn-danger delete-message-btn">Delete</button>
+                        </div>
+                    </div>
+                    {{/each}}
+                    <div class="no-messages" {{noMessages}}>
+                        <p class="private-text">No new messages</p>
+                    </div>
+                </div>
+
                 <div id="message-div">
                     <h4 class="private-header">Message the administrator</h4>
-                    <form id="message-form">
+                    <form id="user-message-form">
                         <div class="form-group">
                             <label class="form-label" for="subject">Subject:</label>
                             <input type="text" class="form-control" id="subject" name="subject" required>
@@ -160,7 +376,7 @@
                                     <h2 class="modal-title">Message sent!</h2>
                                 </div>
                                 <div class="modal-body">
-                                    <p>The administrator will be in touch soon</p>
+                                    <p>The administrator will be in touch shortly</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -170,7 +386,12 @@
                         </div>
                     </div>
 
-                </div>                
+                </div>
+            {{/if}}
+
+
+
+
             </div>
 
 

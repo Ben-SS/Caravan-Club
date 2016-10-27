@@ -1,23 +1,56 @@
 Template.home.onRendered(function() {
 
-    $('#welcome-modal').modal('show');
-
     GoogleMaps.load({ v: '3', key: 'AIzaSyD7BWdbEMycHAdif9up8viP8dnHo02cyx4', libraries: 'geometry,places' });
 
     GoogleMaps.ready('myMap', function(map) {
         // Add a marker to the map once it's ready
-        var marker = new google.maps.Marker({
+        var homeMarker = new google.maps.Marker({
             position: map.options.center,
             map: map.instance,
             animation: google.maps.Animation.DROP
         });
-        marker.addListener('click', function() {
-            infowindow.open(map.instance, marker);
+        var medano = new google.maps.Marker({
+            position: new google.maps.LatLng(﻿28.041667, -16.533333),
+            map: map.instance,
+            animation: google.maps.Animation.DROP
+        });
+        var barlovento = new google.maps.Marker({
+            position: new google.maps.LatLng(﻿28.816667, -17.766667),
+            map: map.instance,
+            animation: google.maps.Animation.DROP
+        });
+        var tajao = new google.maps.Marker({
+            position: new google.maps.LatLng(﻿28.166603,-16.428073),
+            map: map.instance,
+            animation: google.maps.Animation.DROP
+        });
+        homeMarker.addListener('click', function() {
+            home.open(map.instance, homeMarker);
+            
+        });
+        medano.addListener('click', function() {
+            elmedano.open(map.instance, medano); 
+        });
+        barlovento.addListener('click', function() {
+            barlo.open(map.instance, barlovento); 
+        });
+        tajao.addListener('click', function() {
+            taj.open(map.instance, tajao); 
+        });
+        
+        var home = new google.maps.InfoWindow({
+            content: "This is where we are based"
+        });
+        var elmedano = new google.maps.InfoWindow({
+            content: "We often go camping here in El Médano"
+        });
+        var barlo = new google.maps.InfoWindow({
+            content: "A local hot spot Barlovento"
+        });
+        var taj = new google.maps.InfoWindow({
+            content: "A great location Tajao"
         });
 
-        var infowindow = new google.maps.InfoWindow({
-            content: "Test marker"
-        });
     });
 
     var lineoptions = {
@@ -128,7 +161,7 @@ Template.home.helpers({
             
             return {
                 center: Center,
-                zoom: 6,
+                zoom: 7,
                 zoomControl: false,
                 scaleControl: false,
                 mapTypeId: google.maps.MapTypeId.SATELLITE,

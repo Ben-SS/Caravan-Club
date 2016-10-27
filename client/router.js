@@ -26,7 +26,7 @@ Router.route('/:id', {
 
     data: function() {
     	var id = Meteor.userId();
-      	return Meteor.users.findOne();
+      	return Meteor.users.findOne({_id:id});
     },
 
     action: function(){
