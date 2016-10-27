@@ -2,32 +2,24 @@
     <body>
         <div id="wrapper">
 
-            <nav id="my_nav" class="navbar navbar-default navbar-fixed-top">
-              <div class="container-fluid">
+            <div id="welcome-modal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
 
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsed-navbar" aria-expanded="false">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Welcome to the Caravan Club</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p>At this point the site is around 75% finished. The following outlines what you can and can't do at this point in time:<br><br>The remaining 25% needed to complete the site is basically the <strong>Admin area</strong>, so the following can still not be done:<br><br><ol><li>Register/remove a user.</li><li>Read messages sent to admin.</li><li>Add/remove events.</li></ol><br>This is what you can do:<br><br><ol><li>Use the provided users:<br><strong>juan</strong>, password <strong>juan</strong>,<br><strong>manu</strong>, password <strong>manu</strong><br><strong>admin</strong>, password <strong>admin</strong></li><li>Add to the blog (users can only edit/remove their own, admin can do everything). Once you have created entries, these will be displayed on the homepage in place of "loading".</li><li>Use personal area to: Change user details, Attend or unattend events, Sign up or not to newsletter and Send message to admin. All of these functions are correctly set up but until i display this in the admin area you have to use meteor mongo to check the database.</li></ol></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
                 </div>
-
-                <div class="collapse navbar-collapse" id="collapsed-navbar">
-                  <ul class="nav navbar-nav">
-                    <li id="home" class="active"><a href="#">Home</a></li>
-                  </ul>
-                  <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{navname}}<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            {{> login}}
-                        </ul>
-                    </li>
-                  </ul>
-                </div><!-- /.navbar-collapse -->
-              </div><!-- /.container-fluid -->
-            </nav>
+            </div>
             
             <div class="title-row">
                 <img id="logo" src="logo.png" alt="caravan club logo"/>
@@ -46,7 +38,7 @@
                         <div id="reg-text">
                             <p class="register-text">As a member you will be able to:</p>
                             <p class="register-text u"><strong>attend our events</strong></p>
-                            <p class="register-text u"><strong>access our blog!</strong></p>
+                            <p class="register-text u"><strong>share your stories on our blog!</strong></p>
                         </div>
                         <div class="registration">
                             {{> register}}
@@ -60,6 +52,7 @@
                     </div>
                     <div id="blog-div">
                         <h2>Latest blog entries:</h2>
+                        {{> blogLatest num=2}}
                     </div>
                 </div>
                 <div class="col-xs-7">
@@ -87,25 +80,47 @@
                 <div class="col-xs-6">
                     <div id="images-div">
                         <h2>Image gallery:</h2>
+                        <p class="content-text">
+                            Please feel free to cycle through our images:
+                        </p>
                         <div class="images-div">
                             {{#each images}}
-                            <img class="images" src="{{src}}" alt="{{alt}}" title="{{description}}"/>
+                            <img class="images" src="{{src}}" alt="{{alt}}" title="{{description}}" index="{{@index}}"/>
                             {{/each}}
-                        </div>                       
+                        </div>
+                        {{> imageModal}}
                     </div>
                 </div>
                 <div class="col-xs-6">
                     <div id="video-div">
                         <h2>Video gallery:</h2>
+                        <p class="content-text">
+                            Please feel free to have a look at our videos:
+                        </p>
+                        <div class="video-div">
+                            {{#each videos}}
+                            <img class="videos" src="{{src}}" alt="{{alt}}" title="{{description}}" index="{{@index}}"/>
+                            {{/each}}
+                        </div>
+                        {{> videoModal}}
                     </div>
                 </div>
             </div>
 
             <footer class="content-row">
                 <h2>Contact us:</h2>
-                <p class="content-text">We are a </p>
+                <div id="email">
+                    <div>
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        <p id="email-text">info@caravanclp</p>
+                    </div>
+                </div>
+                <div id="social">
+                    {{> social_buttons url=url text=title}}
+                    <div>
+                    </div>
+                </div>
             </footer>
-
-        </div>    
+        </div> 
     </body>
 </template>

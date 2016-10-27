@@ -1,0 +1,63 @@
+<template name="videoModal">
+
+	<div id="video-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div id="video-modal-content" class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Video Gallery</h2>
+                </div>
+                <div class="modal-body">
+                    
+
+
+
+                    <div id="videoCarousel" class="carousel slide" data-ride="carousel" data-interval=false>
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            {{#each indicator}}
+                            <li data-target="#videoCarousel" data-slide-to="{{@index}}" class="slider {{#if active}}active{{/if}}"></li>
+                            {{/each}}
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div hidden id="vid-warning">
+                                <h2>Filler Template</h2>
+                                <p class="content-text">Videos uploaded/Youtube videos posted by the Administrator will be shown here</p>
+                                <button id="vid-warning-btn" class="btn btn-success btn-sm">Got it</button>
+                            </div>
+                            {{#each galleryVideo}}
+                            <div class="item {{#if active}}active{{/if}}">
+                                <img class="vid-image" src="{{src}}" alt="{{alt}}" width="480" height="270">
+                                <p>{{description}}</p>
+                            </div>
+                            {{/each}}
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#videoCarousel" role="button" data-slide="prev">
+                        <span id="left-arrow" class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#videoCarousel" role="button" data-slide="next">
+                        <span id="right-arrow" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                        
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</template>

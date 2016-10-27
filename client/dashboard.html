@@ -1,0 +1,181 @@
+<template name="dashboard">
+    <body>
+        <div id="dashwrapper">
+            
+            <div class="title-row">
+                <h1>Dashboard</h1>
+            </div>
+
+            <div id="name-div">
+                <h2 class="name">{{profile.name}}</h2><br>
+                <h2 class="name">{{profile.surname}}</h2>
+            </div>
+
+            <div class="row dash-row-1">
+                <div id="pers-details">
+                    <h4 class="private-header">Personal Details</h4>
+                    <div class="pers-details-div">
+                        <p class="private-text">Username:</p>
+                        <p class="private-text-orange">{{username}}</p>
+                        <button id="username-change-btn" class="btn btn-sm btn-info btn-change">Change</button>
+                        
+                        <div id="change-username-modal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div id="change-username-modal-content" class="modal-content">
+                                    <div class="modal-body">
+
+                                        <form id="username-form">
+                                            <div class="form-group">
+                                                <p><strong>Old username: </strong></p>
+                                                <p class="content-text">{{username}}</p>
+                                                <label class="form-label" for="newUsername">New username:</label>
+                                                <input type="text" class="form-control" id="newUsername" name="newUsername" required>
+                                            </div>
+                                            <div id="username-confirm" class="form-button">
+                                                <button type="submit" class="btn btn-sm btn-success" value="confirm">Confirm</button>
+                                            </div>
+                                            <div hidden id="username-wrong">
+                                                <p>Invalid username try again</p>
+                                                <button id="username-tryagain" class="btn btn-sm btn-success">Ok</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pers-details-div">
+                        <p class="private-text">Email:</p>
+                        <p class="private-text-orange">{{email}}</p>
+                        <button id="email-change-btn" class="btn btn-sm btn-info btn-change">Change</button>
+
+                        <div id="change-email-modal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div id="change-email-modal-content" class="modal-content">
+                                    <div class="modal-body">
+
+                                        <form id="email-form">
+                                            <div class="form-group">
+                                                <label class="form-label" for="pwd">New email:</label>
+                                                <input type="email" class="form-control" id="newEmail" name="newEmail" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label" for="pwd">Confirm email:</label>
+                                                <input type="email" class="form-control" id="oldEmail" name="oldEmail" required>
+                                            </div>
+                                            <div id="email-confirm" class="form-button">
+                                                <button type="submit" class="btn btn-sm btn-success" value="confirm">Confirm</button>
+                                            </div>
+                                            <div hidden id="email-wrong">
+                                                <p>Emails don't match please try again</p>
+                                                <button id="email-tryagain" class="btn btn-sm btn-danger">Ok</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pers-details-div">
+                        <p id="password-text" class="private-text">Password:</p>
+                        <button id="password-change-btn" class="btn btn-sm btn-info btn-change">Change</button>
+
+                        <div id="change-password-modal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div id="change-password-modal-content" class="modal-content">
+                                    <div class="modal-body">
+
+                                        <form id="password-form">
+                                            <div class="form-group">
+                                                <label class="form-label" for="pwd">Old password:</label>
+                                                <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label" for="pwd">New password:</label>
+                                                <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                                            </div>
+                                            <div id="password-confirm" class="form-button">
+                                                <button type="submit" class="btn btn-sm btn-success" value="confirm">Confirm</button>
+                                            </div>
+                                            <div hidden id="password-wrong">
+                                                <p>Password wrong please try again</p>
+                                                <button id="password-tryagain" class="btn btn-sm btn-danger">Ok</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{> calendar}}
+
+            </div>
+
+            <div class="row">
+                <div id="newsletter-div">
+                    <h4 class="private-header">Newsletter</h4>
+                    <div id="checkbox-newsletter">
+                        <p class="private-text">Would you like to receive a monthly newsletter by email?</p>
+                        <input id="newsletter-check" type="checkbox" value="yes/no" {{checked}}>
+                    </div>
+                </div>
+
+                <div id="blog-link-div">
+                    <h4 class="private-header">Go To Blog Admin</h4>
+                    <button id="go-blog-btn" class="btn btn-lg btn-info">Blog Admin</button>
+                </div>
+
+                <div id="message-div">
+                    <h4 class="private-header">Message the administrator</h4>
+                    <form id="message-form">
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject:</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message">Type your message here:</label>
+                            <textarea class="form-control" id="message" name="message" required></textarea>
+                        </div>
+                        <div class="form-button">
+                            <button type="submit" class="btn btn-success">Send</button>
+                        </div>
+                    </form>
+
+                    <div id="message-modal" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-sm">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Message sent!</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <p>The administrator will be in touch soon</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>                
+            </div>
+
+
+            
+
+        </div> 
+    </body>
+</template>

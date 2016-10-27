@@ -1,10 +1,10 @@
 <template name="login">
-    <form>
-		{{#if userlogged}}
+	<form>
+    {{#if userlogged}}	
 	  	<div class="form-button">
 			<button id="logout" type="submit" class="btn btn-primary form-button">Logout</button>
 		</div>
-		{{else}}
+	{{else}}
 		<div class="form-group">
 			<label class="form-label" for="email">Username:</label>
 			<input type="text" class="form-control" id="username" name="loginUsername" required>
@@ -16,6 +16,7 @@
 		<div class="form-button">
 			<button id="login" type="submit" class="btn btn-primary form-button">Login</button>
 		</div>
-		{{/if}}
+	{{/if}}		
 	</form>
+
 </template>

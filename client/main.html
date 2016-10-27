@@ -12,5 +12,9 @@
 <!-- Routing -->
 
 <template name="main">
-    {{> yield}}
+	<body>
+		{{> nav}}
+    {{> loginFail}}
+    	{{> yield}}
+    </body>
 </template>

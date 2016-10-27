@@ -1,0 +1,58 @@
+<template name="imageModal">
+
+	<div id="image-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div id="image-modal-content" class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Image Gallery</h2>
+                </div>
+                <div class="modal-body">
+                    
+
+
+
+                    <div id="imageCarousel" class="carousel slide" data-ride="carousel" data-interval=false>
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            {{#each indicator}}
+                            <li data-target="#imageCarousel" data-slide-to="{{@index}}" class="slider {{#if active}}active{{/if}}"></li>
+                            {{/each}}
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            {{#each galleryImage}}
+                            <div class="item {{#if active}}active{{/if}}">
+                                <img src="{{src}}" alt="{{alt}}" width="480" height="270">
+                                <p>{{description}}</p>
+                            </div>
+                            {{/each}}
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#imageCarousel" role="button" data-slide="prev">
+                        <span id="left-arrow" class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#imageCarousel" role="button" data-slide="next">
+                        <span id="right-arrow" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                        
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</template>
