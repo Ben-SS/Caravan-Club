@@ -5,7 +5,7 @@ Template.home.onRendered(function() {
     GoogleMaps.ready('myMap', function(map) {
         // Add a marker to the map once it's ready
         var homeMarker = new google.maps.Marker({
-            position: map.options.center,
+            position: new google.maps.LatLng(28.6499974, -17.8666632),
             map: map.instance,
             animation: google.maps.Animation.DROP
         });
@@ -24,6 +24,11 @@ Template.home.onRendered(function() {
             map: map.instance,
             animation: google.maps.Animation.DROP
         });
+        var puerto = new google.maps.Marker({
+            position: new google.maps.LatLng(﻿28.4134, -16.5452),
+            map: map.instance,
+            animation: google.maps.Animation.DROP
+        });
         homeMarker.addListener('click', function() {
             home.open(map.instance, homeMarker);
             
@@ -37,6 +42,9 @@ Template.home.onRendered(function() {
         tajao.addListener('click', function() {
             taj.open(map.instance, tajao); 
         });
+        puerto.addListener('click', function() {
+            puertoc.open(map.instance, puerto); 
+        });
         
         var home = new google.maps.InfoWindow({
             content: "This is where we are based"
@@ -49,6 +57,9 @@ Template.home.onRendered(function() {
         });
         var taj = new google.maps.InfoWindow({
             content: "A great location Tajao"
+        });
+        var puertoc = new google.maps.InfoWindow({
+            content: "Tenerife north, Puerto!"
         });
 
     });
@@ -157,7 +168,7 @@ Template.home.helpers({
     // Make sure the maps API has loaded
         if (GoogleMaps.loaded()) {
             
-            var Center = new google.maps.LatLng(28.6499974, -17.8666632);
+            var Center = new google.maps.LatLng(﻿28.1188289,-17.3637788);
             
             return {
                 center: Center,
